@@ -1,29 +1,26 @@
-console.log("turning pages here!")
+function sleep (ms) {
+	return new Promise(resolve => setTimeout(resolve, ms))
+}
 
-let openedWindow
+async function openThese(urls){
+	open(urls.shift(), "PageTurner")
+//	await sleep(5000)
+	await sleep(5000)
+	if (urls.length > 0) openThese(urls)
+}
 
 let pageturner = {
 	init: function(input, output) {
 		pageturner.input = input;
-		input.addEventListener('change', this.openFile);
+		input.addEventListener('change', this.openFile)
 	},
 
 	openFile: async function (event) {
-	    var reader = new FileReader();
-	    	reader.onload = file => {
-	    		pageturner.urls = file.target.result.split(";")
-	    		pageturner.urls.map(url => {
-	    			console.log(url)
-	    			openedWindow = window.open(url)
-	    			let whatoo = await pageturner.sleep(2000)		
-	    			window.close(openedWindow)
-	    		//	setTimeout(function(page){close(page)}, 3000)
-	    		})
-	    }
-	    	reader.readAsText(pageturner.input.files[0], "UTF-8")
-	},
-
-	sleep: function (ms) {
-		return new Promise(resolve => setTimeout(resolve, ms))
+	    let reader = new FileReader();
+	    reader.onload = file => {
+    		pageturner.urls = file.target.result.split(";")
+    		openThese(pageturner.urls);
+    	}
+    	reader.readAsText(pageturner.input.files[0], "UTF-8")
 	}
 }
