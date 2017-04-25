@@ -8,12 +8,19 @@
 
 
 <h1>Pageturner</h1>
+<p>Pageturner will take a CSV file filled with semicolon-separated values, and then try to open all the addresses, one after the other, in the same tab. Might save some time for some use cases.</p>
 
 <input type='file' accept='text/plain' id="input" />
-<div id="output">Address list file must be a semicolon-separated list of exact URLs.</div>
+<br>
+<p>Address list file must be a comma or semicolon-separated list of exact URLs.</p>
+
+<div id="output"></div>
 
 <script>
-	pageturner.init(document.getElementById('input'), document.getElementById('output'))
+	pageturner.init(
+		input = document.getElementById('input'), 
+		delay = 3000
+	)
 </script>
 
 </body>
