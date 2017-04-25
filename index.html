@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pageturner</title>
+	<script type="text/javascript" src="pageturner.js"></script>
+</head>
+<body>
+
+
+<h1>Pageturner</h1>
+
+<input type='file' accept='text/plain' id="input" />
+<div id="output">Address list file must be a semicolon-separated list of exact URLs.</div>
+
+<script>
+	pageturner.init(document.getElementById('input'), document.getElementById('output'))
+</script>
+
+</body>
+</html>
